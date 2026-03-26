@@ -1,0 +1,150 @@
+/*
+Name: Ayra Siddiqui
+Date created: 02/13/2026
+Date last edited: 03/24/2026
+Version: 2.0
+Description: Homework 2 CSS 
+*/
+table tr {
+    height: 15px;
+}
+
+td {
+    padding: 6px 6px; 
+}
+header {
+    width: 100%;
+    background-color: #e5fedd;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #c3f9f5;
+    margin: 0;
+    height: 100%;
+    min-height: 100vh; /* page is height of the viewport */
+}
+form {
+    flex-grow: 1;
+}
+h1, h2 {
+    text-align: center;
+    font-family: "verdana, sans-serif";
+    font-weight: bold;
+    flex-grow: 1;
+}
+main {
+    text-align: center;
+    font-family: "verdana, sans-serif";
+    font-weight: normal;
+    flex-grow: 1;
+}
+.image {
+    text-align: left;
+}
+.td1 {
+    text-align: right;
+    font-family: "Optima", sans-serif;
+    font-weight: normal;
+}
+th {
+    text-align: center;
+    font-family: "verdana, sans-serif";
+}
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: #e5fedd;
+    height: 2.0rem;
+}
+#footer {
+    text-align: right;
+    font-family: "Optima", sans-serif;
+    font-weight: normal;
+    margin-right: 10px;
+}
+label {
+    text-align: right;
+    font-family: "Optima", sans-serif;
+    font-weight: normal;
+}
+input {
+    text-align: left;
+    font-family: "Optima", sans-serif;
+    font-weight: normal;
+}
+textarea {
+    text-align: left;
+    font-family: "Optima", sans-serif;
+    font-weight: normal;
+}
+#today {
+    text-align: left;
+    font-family: "optima", sans-serif;
+    font-weight: normal;
+    margin-right: 5px;
+}
+p {
+    text-align: right;
+    font-family: "optima", sans-serif;
+    font-weight: normal;
+}
+.error {
+    color: red;
+    font-size: 14px;
+    font-family: "Optima", sans-serif;
+    font-weight: normal;
+}
+.pword-message {
+    text-align: left;
+    font-family: "Optima", sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    color: red;
+     /*position: relative;
+    left: 100px;*/
+    background: transparent;
+    padding: 5px;
+    /*border-spacing: 2px;*/
+    border-radius: 20px;
+}
+.pword-message span {
+    font-size: 14px;
+}
+
+/* Centers the buttons and the review area */
+.button-row {
+    text-align: center;
+    padding: 20px;
+}
+
+#showInput {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+#review {
+    margin-top: 5px;
+}
+table.output,
+tr.output,
+td.output {
+    width: 500px;
+    background-color: #e5fedd;
+    padding: 10px;
+    border-spacing: 2px;
+    border-radius: 20px;
+    color: #333;
+}
+td.output {
+    width: 500px;
+    background-color: #e5fedd;
+    padding: 10px;
+    border-spacing: 2px;
+}
+table {
+    margin-left: auto;
+    margin-right: auto;
+}

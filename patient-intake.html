@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<!--
+    Program name : Siddiqui Clinic – Patient Intake Form
+    Author       : Ayra Siddiqui
+    Date created : 02/13/2026
+    Last edited  : 05/09/2026
+    Version      : 4.0
+    Description  : Homework 4 – adds Cookie/LocalStorage, Fetch API (states),
+                   iFrame embed, sticky header, fixed footer, Remember Me checkbox,
+                   and a personalized welcome message.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Patient Intake – Siddiqui Clinic</title>
+</head>
+<body>
+
+<!-- ═══════════════════════ HEADER (sticky) ══════════════════════════ -->
+<header>
+    <table width="100%">
+        <tr>
+            <td valign="top" align="left" width="20%">
+                <div class="image">
+                    <img src="SiddiquiClinic.png" alt="Siddiqui Clinic Logo" width="200px" id="logo"/>
+                </div>
+            </td>
+            <td>
+                <h2>Siddiqui Clinic</h2>
+                <!-- Welcome message injected by JS -->
+                <center>
+                    <span id="welcome1"></span>
+                    <span id="welcome2"></span>
+                </center>
+            </td>
+            <td valign="bottom" align="right" width="20%">
+                <p>Today's Date: <span id="today"></span></p>
+            </td>
+        </tr>
+    </table>
+</header>
+<hr>
+
+<!-- ═══════════════════════ IFRAME ═══════════════════════════════════ -->
+<div class="iframe-container">
+    <iframe
+        class="frame"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-95.5,29.7,-95.3,29.8&layer=mapnik"
+        frameborder="0"
+        title="Clinic Location Map"
+        loading="lazy">
+    </iframe>
+    <p style="text-align:center; font-family: Optima, sans-serif; font-size:12px; margin:2px 0 0 0;">
+        Siddiqui Clinic – Houston, TX
+    </p>
+</div>
+
+<!-- ═══════════════════════ FORM ══════════════════════════════════════ -->
+<form action="thankyou.html" id="signup" onsubmit="return validateForm()">
+  <center>
+    <div class="format">
+      <table>
+
+        <!-- ── Section heading ── -->
+        <tr>
+          <th colspan="6">Create Account</th>
+        </tr>
+
+        <!-- ── Name row ── -->
+        <tr>
+          <td class="td1"><label for="fname">First Name:</label></td>
+          <td>
+            <input type="text" name="fname" id="fname"
+                   minlength="2" maxlength="30" required
+                   title="2–30 characters. Letters, apostrophes, and dashes only."
+                   pattern="[a-zA-Z'-]{2,30}"
+                   placeholder="Your First Name"
+                   onblur="validateFname()" oninput="validateFname()"/>
+            <span class="error" id="fname-error"></span>
+          </td>
+
+          <td class="td1"><label for="mini">Middle Initial:</label></td>
+          <td>
+            <input type="text" name="mini" id="mini"
+                   maxlength="1"
+                   title="Optional – one uppercase letter only."
+                   pattern="[a-zA-Z]{0,1}"
+                   placeholder="M.I."
+                   onblur="validateMini()" oninput="validateMini()"/>
+            <span class="error" id="mini-error"></span>
+          </td>
+
+          <td class="td1"><label for="lname">Last Name:</label></td>
+          <td>
+            <input type="text" name="lname" id="lname"
+                   minlength="1" maxlength="30" required
+                   title="1–30 characters. Letters, apostrophes, and dashes only."
+                   pattern="[a-zA-Z'-]{1,30}"
+                   placeholder="Your Last Name"
+                   onblur="validateLname()" oninput="validateLname()"/>
+            <span class="error" id="lname-error"></span>
+          </td>
+        </tr>
+
+        <!-- ── Gender ── -->
+        <tr>
+          <td class="td1"><label>Gender:</label></td>
+          <td colspan="5">
+            <input type="radio" id="g1" name="pgender" value="Male" required> Male&nbsp;&nbsp;
+            <input type="radio" id="g2" name="pgender" value="Female"> Female&nbsp;&nbsp;
+            <input type="radio" id="g3" name="pgender" value="Other"> Other
+          </td>
+        </tr>
+
+        <!-- ── Date of Birth ── -->
+        <tr>
+          <td class="td1"><label for="dob">Date of Birth:</label></td>
+          <td colspan="5">
+            <input type="date" id="dob" name="dob" required
+                   title="Must be a real date – not in the future and not more than 120 years ago."
+                   onblur="validateDob()" onchange="validateDob()"/>
+            <span class="error" id="dob-error"></span>
+          </td>
+        </tr>
+
+        <!-- ── SSN ── -->
+        <tr>
+          <td class="td1"><label for="ssn">Social Security Number:</label></td>
+          <td colspan="5">
+            <input type="password" name="ssn" id="ssn"
+                   minlength="9" maxlength="11" required
+                   title="9 digits – format 000-00-0000 (dashes inserted automatically)."
+                   placeholder="000-00-0000"
+                   pattern="^\d{3}-\d{2}-\d{4}$"
+                   onblur="validateSsn()"/>
+            <span class="error" id="ssn-error"></span>
+          </td>
+        </tr>
+
+        <!-- ── Phone ── -->
+        <tr>
+          <td class="td1"><label for="phone">Phone Number:</label></td>
+          <td colspan="5">
+            <input type="text" name="phone" id="phone" required
+                   title="10 digits – format 000-000-0000."
+                   pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                   placeholder="123-456-7890"
+                   onblur="validatePhone()"/>
+            <span class="error" id="phone-error"></span>
+          </td>
+        </tr>
+
+        <!-- ── Address Line 1 ── -->
+        <tr>
+          <td class="td1"><label for="address1">Address Line 1:</label></td>
+          <td colspan="5">
+            <input type="text" name="address1" id="address1"
+                   minlength="2" maxlength="30" required
+                   title="Required – 2 to 30 characters."
+                   placeholder="1234 Main Street"
+                   onblur="validateAddress1()" oninput="validateAddress1()"/>
+            <span class="error" id="address1-error"></span>
+          </td>
+        </tr>
+
+        <!-- ── Address Line 2 ── -->
+        <tr>
+          <td class="td1"><label for="address2">Address Line 2:</label></td>
+          <td colspan="5">
+            <input type="text" name="address2" id="address2"
+                   minlength="2" maxlength="30"
+                   title="Optional – Apt, Suite, Bldg, etc. (2–30 characters)."
+                   placeholder="Apt 2B, Building C, etc."
+                   onblur="validateAddress2()" oninput="validateAddress2()"/>
+            <span class="error" id="address2-error"></span>
+          </td>
+        </tr>
+
+        <!-- ── City / State / Zip ── -->
+        <tr>
+          <td class="td1"><label for="city">City:</label></td>
+          <td>
+            <input type="text" name="city" id="city"
+                   maxlength="30" required
+                   title="Required – your city name."
+                   placeholder="City"
+                   onblur="validateCity()" oninput="validateCity()"/>
+            <span class="error" id="city-error"></span>
+          </td>
+
+          <td class="td1"><label for="state">State:</label></td>
+          <td>
+            <!-- Options populated dynamically via Fetch API from states.json -->
+            <select name="state" id="state" required title="Select your state.">
+              <option value="" selected disabled>Loading states...</option>
+            </select>
+          </td>
+
+          <td class="td1"><label for="zcode">Zip Code:</label></td>
+          <td>
+            <input type="text" id="zcode" name="zcode"
+                   minlength="5" maxlength="10" required
+                   title="5-digit zip (12345) or zip+4 (12345-6789)."
+                   pattern="^\d{5}(-\d{4})?$"
+                   placeholder="12345"
+                   onblur="validateZcode()" oninput="validateZcode()"/>
+            <span class="error" id="zcode-error"></span>
+          </td>
+        </tr>
+
+        <!-- ── Medical History checkboxes ── -->
+        <tr>
+          <td class="td1"><label>Medical History:</label></td>
+          <td colspan="5">
+            <input type="checkbox" name="history" value="Chicken Pox"> Chicken Pox<br>
+            <input type="checkbox" name="history" value="Measles"> Measles<br>
+            <input type="checkbox" name="history" value="COVID-19"> COVID-19<br>
+            <input type="checkbox" name="history" value="Small Pox"> Small Pox<br>
+            <input type="checkbox" name="history" value="Tetanus"> Tetanus
+          </td>
+        </tr>
+
+        <!-- ── Vaccinated radio ── -->
+        <tr>
+          <td class="td1"><label>Fully Vaccinated?</label></td>
+          <td colspan="5">
+            <input type="radio" name="vaccinated" value="Yes"> Yes&nbsp;&nbsp;
+            <input type="radio" name="vaccinated" value="No"> No
+          </td>
+        </tr>
+
+        <!-- ── Health rating slider ── -->
+        <tr>
+          <td class="td1"><label for="range">Current Health Rating (1–10):</label></td>
+          <td colspan="5">
+            <input type="range" name="range" id="range" min="1" max="10" value="5"
+                   title="Slide to rate your current health from 1 (poor) to 10 (excellent)."/>
+            &nbsp;<span id="range-slider"></span>
+          </td>
+        </tr>
+
+        <!-- ── Symptoms textarea ── -->
+        <tr>
+          <td class="td1"><label for="symptoms">Describe Symptoms:</label></td>
+          <td colspan="5">
+            <textarea name="symptoms" id="symptoms" rows="3" cols="40"
+                      title="Optional – describe any current symptoms or medical concerns."
+                      placeholder="Enter any symptoms or concerns here..."></textarea>
+          </td>
+        </tr>
+
+        <!-- ── Email ── -->
+        <tr>
+          <td class="td1"><label for="email">Email Address:</label></td>
+          <td colspan="5">
+            <input type="email" name="email" id="email" required
+                   title="Must be in the format name@domain.tld"
+                   pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,20}"
+                   placeholder="yourname@example.com"
+                   onblur="validateEmail()" oninput="validateEmail()"/>
+            <span class="error" id="email-error"></span>
+          </td>
+        </tr>
+
+        <!-- ── User ID ── -->
+        <tr>
+          <td class="td1"><label for="uid">User ID:</label></td>
+          <td colspan="5">
+            <input type="text" name="uid" id="uid"
+                   minlength="5" maxlength="20" required
+                   title="5–20 characters. Must start with a letter. Letters, numbers, underscores, and dashes only. No spaces."
+                   pattern="^[a-zA-Z][a-zA-Z0-9_\-]{4,19}$"
+                   placeholder="user_id"
+                   onblur="validateUid()" oninput="validateUid()"/>
+            <span class="error" id="uid-error"></span>
+          </td>
+        </tr>
+
+        <!-- ── Password ── -->
+        <tr>
+          <td class="td1"><label for="pword">Password:</label></td>
+          <td colspan="5">
+            <input type="password" name="pword" id="pword"
+                   minlength="8" maxlength="30" required
+                   title="8–30 characters. Must include at least 1 uppercase, 1 lowercase, 1 number, and 1 special character (!@#$%&*-_.)."
+                   onblur="validatePword()" oninput="validatePword()" onfocus="validatePword()"/>
+          </td>
+        </tr>
+
+        <!-- ── Confirm Password ── -->
+        <tr>
+          <td class="td1"><label for="repword">Re-enter Password:</label></td>
+          <td colspan="5">
+            <input type="password" name="repword" id="repword" required
+                   title="Must match the password entered above."
+                   onblur="confirmPword()" oninput="confirmPword()"/>
+            <br>
+            <span class="error" id="repword-error"></span>
+          </td>
+        </tr>
+
+        <!-- ── Password requirements message area ── -->
+        <tr>
+          <td colspan="6">
+            <div class="pword-message"></div>
+          </td>
+        </tr>
+
+        <!-- ── Remember Me checkbox (NEW – HW4) ── -->
+        <tr>
+          <td class="td1">
+            <label for="remember-me">Remember Me:</label>
+          </td>
+          <td colspan="5">
+            <input
+              type="checkbox"
+              id="remember-me"
+              name="remember-me"
+              checked
+            />
+            <span style="font-family: Optima, sans-serif; font-size: 13px; color: #1a3328;">
+              &nbsp;Save my info for next visit (expires in 48 hours)
+            </span>
+          </td>
+        </tr>
+
+        <!-- ── Buttons ── -->
+        <tr>
+          <td colspan="6" class="button-row">
+            <input type="submit" id="submit" value="Submit"
+                   disabled style="opacity:0.4;"
+                   title="Complete all required fields and click Validate first.">
+
+            <input type="reset" value="Reset"
+                   onclick="removeReview()"
+                   title="Clear all fields and start over.">
+
+            <input type="button" name="review" id="review" value="Review"
+                   onclick="reviewInput()"
+                   title="Preview the data you have entered so far."/>
+
+            <input type="button" name="validate" id="validate" value="Validate"
+                   style="font-family: Optima, sans-serif;"
+                   onclick="validateEverything()"
+                   title="Check all fields for errors before submitting.">
+          </td>
+        </tr>
+
+        <!-- ── Review output area ── -->
+        <tr>
+          <td colspan="6">
+            <div id="showInput"></div>
+          </td>
+        </tr>
+
+      </table>
+    </div>
+  </center>
+</form>
+
+<!-- ═══════════════════════ ALERT BOX ══════════════════════════════════ -->
+<div id="alert-box">
+    <div id="alert-content">
+        <h4>Please fill out all required fields.</h4>
+        <button id="close-alert">OK</button>
+    </div>
+</div>
+
+<!-- ═══════════════════════ FOOTER (fixed) ═════════════════════════════ -->
+<footer>
+    <p>&#169; 2026 Siddiqui Clinic | <a href="contact.html">Contact Us!</a></p>
+</footer>
+
+<script src="hw4.js"></script>
+</body>
+</html>

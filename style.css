@@ -1,0 +1,304 @@
+/*
+    Name        : Ayra Siddiqui
+    Date created: 02/13/2026
+    Last edited : 05/09/2026
+    Version     : 4.0
+    Description : Homework 4 – Siddiqui Clinic Patient Intake Stylesheet
+                  New: sticky header, fixed footer, welcome message styles,
+                  iframe container styles.
+*/
+ 
+/* ── Base layout ──────────────────────────────────────────────────── */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #c3f9f5;
+    margin: 0;
+    /* padding-top keeps content from hiding behind sticky header  */
+    padding-top: 10px;
+    /* padding-bottom keeps content from hiding behind fixed footer */
+    padding-bottom: 3rem;
+    min-height: 100vh;
+}
+ 
+form { flex-grow: 1; }
+ 
+/* ── Header (STICKY – HW4) ───────────────────────────────────────── */
+header {
+    position: sticky;        /* sticks to top of viewport while scrolling */
+    top: 0;
+    z-index: 100;            /* stay above all other content              */
+    width: 100%;
+    background-color: #e5fedd;
+    transition: background-color 0.3s ease;  /* smooth on-scroll effect  */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);  /* subtle depth when stuck  */
+}
+ 
+/* ── Footer (FIXED – HW4) ────────────────────────────────────────── */
+footer {
+    position: fixed;         /* always visible at the bottom of viewport */
+    bottom: 0;
+    width: 100%;
+    background-color: #e5fedd;
+    height: 2.0rem;
+    z-index: 100;
+    box-shadow: 0 -2px 6px rgba(0,0,0,0.10);
+}
+ 
+/* ── Welcome message (HW4 NEW) ───────────────────────────────────── */
+#welcome1 {
+    display: block;
+    font-family: Verdana, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: #1a5c3a;
+    margin-top: 4px;
+}
+ 
+#welcome2 {
+    display: block;
+    font-family: Optima, sans-serif;
+    font-size: 13px;
+    color: #2d7a55;
+    margin-bottom: 4px;
+}
+ 
+#welcome2 a {
+    color: #b30000;
+    font-style: italic;
+    text-decoration: underline;
+}
+ 
+#welcome2 a:hover { color: #7a0000; }
+ 
+/* ── iFrame container (HW4 NEW) ──────────────────────────────────── */
+.iframe-container {
+    position: relative;      /* sits in the normal document flow        */
+    width: 100%;
+    max-width: 700px;
+    margin: 14px auto 6px auto;
+    border: 2px solid #5aad8a;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.13);
+    background: #e5fedd;
+}
+ 
+/* ── iFrame element (HW4 NEW) ────────────────────────────────────── */
+.iframe-container iframe,
+.frame {
+    width: 100%;
+    height: 220px;
+    border: none;
+    display: block;
+}
+ 
+/* ── Typography ──────────────────────────────────────────────────── */
+h1, h2 {
+    text-align: center;
+    font-family: Verdana, sans-serif;
+    font-weight: bold;
+}
+ 
+h3 { font-family: Verdana, sans-serif; }
+ 
+p {
+    text-align: right;
+    font-family: Optima, sans-serif;
+    font-weight: normal;
+}
+ 
+#today {
+    text-align: left;
+    font-family: Optima, sans-serif;
+    font-weight: normal;
+    margin-right: 5px;
+}
+ 
+/* ── Table ───────────────────────────────────────────────────────── */
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+ 
+table tr { height: 15px; }
+ 
+td { padding: 6px 6px; }
+ 
+th {
+    text-align: center;
+    font-family: Verdana, sans-serif;
+}
+ 
+/* ── Labels & inputs ─────────────────────────────────────────────── */
+.td1 {
+    text-align: right;
+    font-family: Optima, sans-serif;
+    font-weight: normal;
+}
+ 
+label {
+    text-align: right;
+    font-family: Optima, sans-serif;
+    font-weight: normal;
+}
+ 
+input, textarea, select {
+    font-family: Optima, sans-serif;
+    font-weight: normal;
+}
+ 
+.image { text-align: left; }
+ 
+/* ── Error spans ─────────────────────────────────────────────────── */
+.error {
+    color: red;
+    font-size: 13px;
+    font-family: Optima, sans-serif;
+    font-weight: normal;
+}
+ 
+/* ── Password requirements message ──────────────────────────────── */
+.pword-message {
+    text-align: left;
+    font-family: Optima, sans-serif;
+    font-weight: normal;
+    font-size: 13px;
+    color: red;
+    position: relative;
+    left: 0;
+    background: transparent;
+    padding: 4px 8px;
+    border-spacing: 2px;
+    border-radius: 10px;
+}
+ 
+.pword-message span { display: block; }
+ 
+/* ── Buttons row ─────────────────────────────────────────────────── */
+.button-row {
+    text-align: center;
+    padding: 20px;
+}
+ 
+.button-row input[type="button"],
+.button-row input[type="submit"],
+.button-row input[type="reset"] {
+    margin: 4px 6px;
+    padding: 6px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: Optima, sans-serif;
+    font-size: 14px;
+    border: 1px solid #5aad8a;
+    background-color: #b2f0d8;
+    color: #1a3328;
+}
+ 
+.button-row input[type="button"]:hover,
+.button-row input[type="reset"]:hover {
+    background-color: #7de0b5;
+}
+ 
+.button-row input[type="submit"] {
+    background-color: #3ca877;
+    color: #fff;
+    font-weight: bold;
+}
+ 
+.button-row input[type="submit"]:hover:not(:disabled) {
+    background-color: #2d8a60;
+}
+ 
+.button-row input[type="submit"]:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+ 
+/* ── Review / output table ───────────────────────────────────────── */
+#showInput {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+ 
+table.output,
+tr.output {
+    width: 520px;
+    background-color: #e5fedd;
+    padding: 10px;
+    border-spacing: 2px;
+    border-radius: 20px;
+    color: #1a3328;
+}
+ 
+td.outputdata {
+    width: 260px;
+    background-color: #d4f8cb;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: Optima, sans-serif;
+    font-size: 13px;
+    color: #1a3328;
+}
+ 
+/* ── Alert box (full-screen overlay) ────────────────────────────── */
+#alert-box {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+ 
+/* ── Alert content card ──────────────────────────────────────────── */
+#alert-content {
+    background-color: #e5fedd;
+    border: 2px solid #5aad8a;
+    border-radius: 14px;
+    width: 340px;
+    height: auto;
+    margin: auto;
+    margin-top: 180px;
+    padding: 30px 24px;
+    text-align: center;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.20);
+}
+ 
+/* ── Alert heading ───────────────────────────────────────────────── */
+#alert-content h4 {
+    font-size: 18px;
+    text-align: center;
+    font-family: Optima, sans-serif;
+    font-weight: normal;
+    color: #b30000;
+    margin: 0 0 18px 0;
+}
+ 
+/* ── Alert close button ──────────────────────────────────────────── */
+#close-alert {
+    background-color: #3ca877;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #2d8a60;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    height: 38px;
+    width: 90px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 6px;
+    text-align: center;
+    font-family: Optima, sans-serif;
+    transition: background-color 0.2s;
+}
+ 
+#close-alert:hover {
+    background-color: #2d8a60;
+}
